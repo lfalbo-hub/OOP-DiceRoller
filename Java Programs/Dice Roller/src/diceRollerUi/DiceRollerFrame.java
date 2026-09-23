@@ -36,7 +36,10 @@ public class DiceRollerFrame extends JFrame {
 		setTitle("Dice Roller");
 		
 		setBounds(300, 200, 450, 300);
-		contentPane = new JPanel();
+		//contentPane = new JPanel();
+		
+		contentPane = new HomePanel();
+		
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		

@@ -3,6 +3,9 @@ package diceRollerUi;
 import javax.swing.JPanel;
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import diceRollerPd.DiceBag;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -13,7 +16,8 @@ public class HomePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTextField tfDiceCount;
 	private JTextField tfFaceCount;
-	private JButton btnNewButton;
+	private JButton btnDoRoll;
+	private JLabel lblRollOutput;
 	/**
 	 * Create the panel.
 	 */
@@ -34,12 +38,26 @@ public class HomePanel extends JPanel {
 		add(tfFaceCount);
 		tfFaceCount.setColumns(10);
 		
-		btnNewButton = new JButton("Roll Dice");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnDoRoll = new JButton("Roll Dice");
+		btnDoRoll.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				
+				System.out.println("Roll button clicked!");
+				
+				int diceCount = Integer.parseInt(tfDiceCount.getText());
+				int faceCount = Integer.parseInt(tfFaceCount.getText());
+				
+				DiceBag testBag = new DiceBag(diceCount, faceCount);  // DiceBag object that gets instantiated with the users inputs
+				testBag.roll();
+				
+				lblRollOutput.setText(testBag.toStringSimple());
+				
 			}
 		});
-		add(btnNewButton);
+		add(btnDoRoll);
+		
+		lblRollOutput = new JLabel("Total:");
+		add(lblRollOutput);
 
 		
 	}

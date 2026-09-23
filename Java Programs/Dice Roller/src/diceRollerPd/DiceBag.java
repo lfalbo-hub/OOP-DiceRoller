@@ -7,6 +7,7 @@ public class DiceBag {
 	int diceCount = 0; // Integer variable to hold the number of dice in the bag
 	int faceCount = 0; // Integer variable to hold the number of face on each die in the bag
 	int diceRollSum = 0;  // Integer variable to hold the total of the die faces rolled
+	Die[] dice; // Instantiated array of Die objects with length of diceCount
 	
 	// Default Constructor
 	public DiceBag() {
@@ -18,10 +19,10 @@ public class DiceBag {
 	public DiceBag(int diceCount, int faceCount) {
 		this.diceCount = diceCount; // User input diceCount getting put into diceCount
 		this.faceCount = faceCount; // User input faceCount getting put into faceCount
+		dice = new Die[faceCount];
 	}
 	
 	public int roll() {
-		Die[] dice = new Die[diceCount]; // Instantiated array of Die objects with length of diceCount
 		
 		// Loop to instantiate each Die in dice array with the number of faces
 		for(int a = 0; a < dice.length; a++) {
@@ -31,7 +32,7 @@ public class DiceBag {
 		// Loop to roll each die in dice array add adding their face to diceRoll Sum and outputting a formatted message
 		for(int b = 0; b < dice.length; b++) {
 			diceRollSum += dice[b].roll();
-			System.out.println("Roll #" + (b + 1) + " : " + dice[b].getCurrentFace());
+			System.out.println("Die #" + (b + 1) + " Roll: " + dice[b].getCurrentFace());
 		}
 		
 		return diceRollSum;
@@ -40,5 +41,15 @@ public class DiceBag {
 	public String toString() {
 		
 		return "Total Sum of Dice Rolled Is : " + diceRollSum; // Formatted return message to be outputted
+	}
+	
+	public String toStringSimple() {
+		
+		String outputLine = "";
+		
+		for(Die d : dice) {
+			outputLine += d;
+		}
+		return "Total Sum of Dice Rolled Is : " + diceRollSum + " : " + outputLine; // Formatted return message to be outputted
 	}
 }
